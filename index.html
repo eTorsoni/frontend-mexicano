@@ -6,8 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mexicano Restaurant</title>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f9a8d4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="./assets/images/logo.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/logo.webp">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/logo.webp">
+    <link rel="shortcut icon" href="./assets/images/logo.webp" type="image/x-icon">
+    <meta name="msapplication-TileImage" content="./assets/images/logo.webp">
+    <meta property="og:image" content="./assets/images/logo.webp">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="https://em-content.zobj.net/source/apple/81/taco_1f32e.png">
     <script>
         tailwind.config = {
             theme: {
@@ -584,10 +593,13 @@
             });
         });
 
-
-        // ============================================================
-        //  INICIALIZAÇÃO
-        // ============================================================
+if('serviceWorker' in navigator){
+            window.addEventListener('load', () =>{
+                navigator.serviceWorker.register('./sw.js')
+                .then(reg=>console.log("Service Worker Registrado no Porto!", reg))
+                .catch(err=>console.log("Erro ao preparar o sushi", err));
+            })
+        }
         carregarCardapio();
 
     </script>
